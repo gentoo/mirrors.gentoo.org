@@ -1,32 +1,50 @@
 from django.db import models
 
+class Continents(models.Model):
+    name = models.CharField(max_length=15)
+
+class Countries(models.Model):
+    name = models.CharField(max_length=50)
+    code = models.CharField(max_length=10)
+    continent = models.ForeignKey(Continents)
+
+class ContactEmail(models.Model):
+    email = models.EmailField()
+    bugzilla = models.BooleanField(default=False)
+
 class Contacts(models.Model):
     name = models.CharField(max_length=255)
-    email1 = models.EmailField()
-    email2 = models.EmailField()
-    email3 = models.EmailField()
-    email4 = models.EmailField()
-    email5 = models.EmailField()
-    bugzilla1 = models.BooleanField(default=False)
-    bugzilla2 = models.BooleanField(default=False)
-    bugzilla3 = models.BooleanField(default=False)
-    bugzilla4 = models.BooleanField(default=False)
-    bugzilla5 = models.BooleanField(default=False)
+    email = models.ForeignKey(ContactEmail)
     url = models.URLField(blank=True, null=True)
 
+class MirrorAlias(models.Model):
+    alias = models.URLField()
+
+class MirrorBugs(models.Model):
+    number = models.IntegerField()
+
 class Mirrors(models.Model):
-    url1 = models.URLField()
-    url2 = models.URLField()
+    STATE_CHOICES = (
+        ('working', 'working'),
+        ('lagging', 'lagging'),
+        ('down', 'down'),
+    )
+    url = models.URLField()
+    alias = models.ForeignKey(MirrorAlias)
     ipv4 = models.BooleanField(default=True)
     ipv6 = models.BooleanField(default=False)
+    bugs = models.ManyToManyField(MirrorBugs)
+    country = models.ForeignKey(Countries)
     contact = models.ManyToManyField(Contacts)
+    state = models.CharField(max_length=10,
+        choices=STATE_CHOICES,
+        default='working')
 
     class Meta:
         abstract = True
 
 class RsyncMirrors(Mirrors):
     pass
-
 
 class DistfilesMirrors(Mirrors):
     PROTOCOL_CHOICES = (
