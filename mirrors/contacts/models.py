@@ -15,7 +15,7 @@ class ContactEmail(models.Model):
 class Contacts(models.Model):
     name = models.CharField(max_length=255)
     email = models.ForeignKey(ContactEmail)
-    url = models.URLField(blank=True, null=True)
+    url = models.URLField(null=True)
 
 class MirrorAlias(models.Model):
     alias = models.URLField()
@@ -30,12 +30,12 @@ class Mirrors(models.Model):
         ('down', 'down'),
     )
     url = models.URLField()
-    alias = models.ForeignKey(MirrorAlias)
+    alias = models.ForeignKey(MirrorAlias, null=True)
     ipv4 = models.BooleanField(default=True)
     ipv6 = models.BooleanField(default=False)
-    bugs = models.ManyToManyField(MirrorBugs)
+    bugs = models.ManyToManyField(MirrorBugs, null=True)
     country = models.ForeignKey(Countries)
-    contact = models.ManyToManyField(Contacts)
+    contacts = models.ManyToManyField(Contacts, null=True)
     state = models.CharField(max_length=10,
         choices=STATE_CHOICES,
         default='working')
