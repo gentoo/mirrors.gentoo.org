@@ -17,7 +17,7 @@ class Contacts(models.Model):
     email = models.ForeignKey(ContactEmail)
     url = models.URLField(null=True)
 
-class Companies(models.Model):
+class Providers(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(null=True)
     url = models.URLField(null=True)
@@ -47,7 +47,7 @@ class Mirrors(models.Model):
     bugs = models.ManyToManyField(MirrorBugs, null=True)
     country = models.ForeignKey(Countries)
     contacts = models.ManyToManyField(Contacts, null=True)
-    company = models.ForeignKey(Companies, null=True)
+    provider = models.ForeignKey(Providers, null=True)
 
     class Meta:
         abstract = True
