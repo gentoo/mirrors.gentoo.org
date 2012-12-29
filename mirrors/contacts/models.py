@@ -29,18 +29,19 @@ class MirrorBugs(models.Model):
     number = models.IntegerField()
 
 class MirrorURL(models.Model):
-    STATE_CHOICES = (
-        ('working', 'working'),
-        ('lagging', 'lagging'),
-        ('down', 'down'),
+    STATUS_CHOICES = (
+        ('Working', 'Working'),
+        ('Lagging', 'Lagging'),
+        ('Down', 'Down'),
+        ('Unknown', 'Unknown'),
     )
     url = models.URLField()
     alias = models.ForeignKey(MirrorAlias, null=True)
     ipv4 = models.BooleanField(default=True)
     ipv6 = models.BooleanField(default=False)
-    state = models.CharField(max_length=10,
-        choices=STATE_CHOICES,
-        default='working')
+    status = models.CharField(max_length=10,
+        choices=STATUS_CHOICES,
+        default='Working')
 
 class Mirrors(models.Model):
     bugs = models.ManyToManyField(MirrorBugs, null=True)
