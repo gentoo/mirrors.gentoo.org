@@ -17,13 +17,18 @@ class Contacts(models.Model):
     email = models.ForeignKey(ContactEmail)
     url = models.URLField(null=True)
 
+class Companies(models.Model):
+    name = models.CharField(max_length=255)
+    email = models.EmailField(null=True)
+    url = models.URLField(null=True)
+
 class MirrorAlias(models.Model):
     alias = models.URLField()
 
 class MirrorBugs(models.Model):
     number = models.IntegerField()
 
-class Mirrors(models.Model):
+class MirrorURL(models.Model):
     STATE_CHOICES = (
         ('working', 'working'),
         ('lagging', 'lagging'),
@@ -33,25 +38,23 @@ class Mirrors(models.Model):
     alias = models.ForeignKey(MirrorAlias, null=True)
     ipv4 = models.BooleanField(default=True)
     ipv6 = models.BooleanField(default=False)
-    bugs = models.ManyToManyField(MirrorBugs, null=True)
-    country = models.ForeignKey(Countries)
-    contacts = models.ManyToManyField(Contacts, null=True)
     state = models.CharField(max_length=10,
         choices=STATE_CHOICES,
         default='working')
+
+class Mirrors(models.Model):
+    bugs = models.ManyToManyField(MirrorBugs, null=True)
+    country = models.ForeignKey(Countries)
+    contacts = models.ManyToManyField(Contacts, null=True)
+    company = models.ForeignKey(Companies, null=True)
 
     class Meta:
         abstract = True
 
 class RsyncMirrors(Mirrors):
-    pass
+    url = models.OneToOneField(MirrorURL)
 
 class DistfilesMirrors(Mirrors):
-    PROTOCOL_CHOICES = (
-        ('http', 'http'),
-        ('ftp', 'ftp'),
-        ('rsync', 'rsync'),
-    )
-    protocol = models.CharField(max_length=5,
-        choices=PROTOCOL_CHOICES,
-        default='http')
+    http = models.OneToOneField(MirrorURL, null=True, related_name='http')
+    ftp = models.OneToOneField(MirrorURL, null=True, related_name='ftp')
+    rsync = models.OneToOneField(MirrorURL, null=True, related_name='rsync')
