@@ -1,13 +1,6 @@
 from django.db import models
 from mirrors.choices import *
-
-class Continents(models.Model):
-    name = models.CharField(max_length=15)
-
-class Countries(models.Model):
-    name = models.CharField(max_length=50)
-    code = models.CharField(max_length=10)
-    continent = models.ForeignKey(Continents)
+from international.models import Country
 
 class ContactEmail(models.Model):
     email = models.EmailField()
@@ -40,7 +33,7 @@ class MirrorURL(models.Model):
 
 class Mirrors(models.Model):
     bugs = models.ManyToManyField(MirrorBugs, null=True)
-    country = models.ForeignKey(Countries)
+    country = models.ForeignKey(Country)
     contacts = models.ManyToManyField(Contacts, null=True)
     provider = models.ForeignKey(Providers, null=True)
 
