@@ -1,4 +1,5 @@
 from django.db import models
+from mirrors.choices import *
 
 class Continents(models.Model):
     name = models.CharField(max_length=15)
@@ -29,12 +30,6 @@ class MirrorBugs(models.Model):
     number = models.IntegerField()
 
 class MirrorURL(models.Model):
-    STATUS_CHOICES = (
-        ('Working', 'Working'),
-        ('Lagging', 'Lagging'),
-        ('Down', 'Down'),
-        ('Unknown', 'Unknown'),
-    )
     url = models.URLField()
     alias = models.ForeignKey(MirrorAlias, null=True)
     ipv4 = models.BooleanField(default=True)
