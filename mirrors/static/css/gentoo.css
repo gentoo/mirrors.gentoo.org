@@ -1,0 +1,60 @@
+/* Gentoo bar */
+body {
+        background: none repeat scroll 0 0 #D2D0D4;
+        font-family: Helvetica,Arial,Geneva;
+        margin: 1em;
+}
+
+#gentoo-main {
+        background: none repeat scroll 0 0 #F0F0F0;
+        border: 1px solid #747E93;
+        border-radius: 5px 5px 5px 5px;
+        color: black;
+        font-size: 10pt;
+	font-family: Sans-Serif;
+        padding: 10px;
+}
+#header {
+    text-align:center;
+}
+div#gentoo-bar {
+   background: url("../img/gentoo-header-bar-bg.png") repeat-x;
+   margin-bottom: 2em;
+   margin-top: -1em;
+   margin-left: -1em;
+   margin-right: -1em;
+   overflow:hidden;
+   padding-bottom:0.3em;
+}
+
+div#gentoo-bar img {
+    border: none !important;
+}
+
+div#gentoo-bar div {
+    font-size: 10pt;
+    padding: .25em;
+}
+
+div#gentoo-bar a.home-link {
+    margin-right: .5em;
+    float: left;
+}
+
+div#gentoo-bar div a {
+    text-decoration: none;
+    padding: .25em;
+    padding-left: .5em;
+    padding-right: .5em;
+    color: #231A3F;
+}
+
+div#gentoo-bar div a:hover {
+    background-color: #A898DD;
+    color: #45347B;
+}
+
+div#gentoo-bar div a.active {
+    background-color: white;
+    font-weight: bold;
+}
