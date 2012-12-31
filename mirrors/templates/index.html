@@ -54,13 +54,13 @@
                 <tbody>
                 {% for distfilesmirror in distfilesmirrors %}
                 <tr>
-                    <td>{{ distmirror.country.continent }}</td>
-                    <td>{{ distmirror.provider.name }}</td>
-                    <td><a href="{{ distmirror.http.url }}">HTTP</a></td>
-                    <td>{{ distmirror.country.code }}</td>
-                    <td>{{ distmirror.http.ipv4 }}</td>
-                    <td>{{ distmirror.http.ipv6 }}</td>
-                    <td>{{ distmirror.http.status }}</td>
+                    <td>{{ distfilesmirror.country.continent }}</td>
+                    <td>{{ distfilesmirror.provider.name }}</td>
+                    <td><a href="{{ distfilesmirror.http.url }}">HTTP</a></td>
+                    <td>{{ distfilesmirror.country.code }}</td>
+                    <td>{{ distfilesmirror.http.ipv4 }}</td>
+                    <td>{{ distfilesmirror.http.ipv6 }}</td>
+                    <td>{{ distfilesmirror.http.status }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
