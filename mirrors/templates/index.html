@@ -1,111 +1,109 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html>
-<head>
+    <head>
         <title>Gentoo Linux Mirrors</title>
-
         <link type="image/x-icon" href="http://www.gentoo.org/favicon.ico" rel="shortcut icon" />
         <link rel="stylesheet" type="text/css" href="{% static "css/tablesort-gentoo.css" %}">
         <link rel="stylesheet" type="text/css" href="{% static "css/gentoo.css" %}">
-
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
         <script type="text/javascript" src="{% static "js/jquery-latest.js" %}"></script>
         <script type="text/javascript" src="{% static "js/jquery.tablesorter.js" %}"></script>
-	<script type="text/javascript" src="{% static "js/sort.js" %}"></script>
-</head>
-<body>
-    <!-- gentoo-bar from bugs.gentoo.org -->
-    <div id="gentoo-bar">
-	<a class="home-link" title="Go to the Gentoo Bugzilla homepage" href="/">
-		<img alt="Gentoo Websites Logo" src="https://www.bugs.gentoo.org/extensions/Gentoo/web/gentoo_org.png">
-	</a>
-
-	<div>
-		Go to:
-		<a href="http://www.gentoo.org/">Gentoo Home</a>
-		<a href="http://www.gentoo.org/doc/en/index.xml">Documentation</a>
-		<a href="http://forums.gentoo.org/">Forums</a>
-		<a href="http://www.gentoo.org/main/en/lists.xml">Lists</a>
-		<a href="http://bugs.gentoo.org">Bugs</a>
-		<a href="http://planet.gentoo.org">Planet</a>
-		<a href="http://store.gentoo.org">Store</a>
-		<a href="http://wiki.gentoo.org">Wiki</a>
+        <script type="text/javascript" src="{% static "js/sort.js" %}"></script>
+    </head>
+    <body>
+        <!-- gentoo-bar from bugs.gentoo.org -->
+        <div id="gentoo-bar">
+            <a class="home-link" title="Go to the Gentoo Bugzilla homepage" href="/">
+                <img alt="Gentoo Websites Logo" src="https://www.bugs.gentoo.org/extensions/Gentoo/web/gentoo_org.png">
+            </a>
+            <div>
+                Go to:
+                <a href="http://www.gentoo.org/">Gentoo Home</a>
+                <a href="http://www.gentoo.org/doc/en/index.xml">Documentation</a>
+                <a href="http://forums.gentoo.org/">Forums</a>
+                <a href="http://www.gentoo.org/main/en/lists.xml">Lists</a>
+                <a href="http://bugs.gentoo.org">Bugs</a>
+                <a href="http://planet.gentoo.org">Planet</a>
+                <a href="http://store.gentoo.org">Store</a>
+                <a href="http://wiki.gentoo.org">Wiki</a>
                 <a class="active" href="http://mirrors.gentoo.org">Mirrors</a>
                 <strong><a href="http://www.gentoo.org/main/en/where.xml">Get Gentoo!</a></strong>
-	</div>
-    </div>
-    <div id="gentoo-main">
-        <div id="header">
-            <h1 style="text-align:center;">Gentoo Linux Mirrors</h1>
-            <span> Some text for the Mirrors </span>
+            </div>
         </div>
-        <hr width="600"/>
-        <h2>Distfiles Mirrors</h2>
-        <table id="distfiles" class="tablesorter">
-        <thead>
-        <tr>
-            <th>Continent</th>
-            <th>Provider</th>
-            <th>Mirror URL</th>
-            <th>Country</th>
-            <th>IPv4</th>
-            <th>IPv6</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for distmirror in distmirror %}
-        <tr>
-            <td>{{ distmirror.country.continent }}</td>
-            <td>{{ distmirror.provider.name }}</td>
-            <td><a href="{{ distmirror.http.url }}">HTTP</a></td>
-            <td>{{ distmirror.country.code }}</td>
-            <td>{{ distmirror.http.ipv4 }}</td>
-            <td>{{ distmirror.http.ipv6 }}</td>
-            <td>{{ distmirror.http.status }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-        </table>
-        <h2>Rsync Mirrors</h2>
-        <table id="rsync" class="tablesorter">
-        <thead>
-        <tr>
-            <th>Continent</th>
-            <th>Provider</th>
-            <th>Mirror URL</th>
-            <th>Country</th>
-            <th>IPv4</th>
-            <th>IPv6</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for rsyncmirror in rsyncmirror %}
-        <tr>
-            <td>{{ rsyncmirror.country.continent }}</td>
-            <td>{{ rsyncmirror.provider.name }}</td>
-            <td><a href="{{ rsyncmirror.url.url }}">rsync</a></td>
-            <td>{{ rsyncmirror.country.code }}</td>
-            <td>{{ rsyncmirror.url.ipv4 }}</td>
-            <td>{{ rsyncmirror.url.ipv6 }}</td>
-            <td>{{ rsyncmirror.url.status }}</td>
-        </tr>
-        {% endfor %}
-        </tbody>
-        </table>
-        <h2>Rsync Usage</h2>
-	<ul>
-	  <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage.png">Full Graph</a></li>
-	  <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage-last4weeks.png">Past Month Graph</a></li>
-        </ul>
-        <h2>Mirroring Resources</h2>
-        <ul>
-            <li><a href="http://www.gentoo.org/doc/en/rsync.xml">How to set up a Gentoo rsync mirror</a></li>
-            <li><a href="http://www.gentoo.org/doc/en/source_mirrors.xml">How to set up a Gentoo source mirror</a></li>
-        </ul>
-        <br />
-        <div align="center"> © Gentoo Foundation, Inc.</div>
-</div>
-</body>
+
+        <div id="gentoo-main">
+            <div id="header">
+                <h1 style="text-align:center;">Gentoo Linux Mirrors</h1>
+                <span> Some text for the Mirrors </span>
+            </div>
+            <hr width="600"/>
+            <h2>Distfiles Mirrors</h2>
+            <table id="distfiles" class="tablesorter">
+                <thead>
+                <tr>
+                    <th>Continent</th>
+                    <th>Provider</th>
+                    <th>Mirror URL</th>
+                    <th>Country</th>
+                    <th>IPv4</th>
+                    <th>IPv6</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for distmirror in distmirror %}
+                <tr>
+                    <td>{{ distmirror.country.continent }}</td>
+                    <td>{{ distmirror.provider.name }}</td>
+                    <td><a href="{{ distmirror.http.url }}">HTTP</a></td>
+                    <td>{{ distmirror.country.code }}</td>
+                    <td>{{ distmirror.http.ipv4 }}</td>
+                    <td>{{ distmirror.http.ipv6 }}</td>
+                    <td>{{ distmirror.http.status }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <h2>Rsync Mirrors</h2>
+            <table id="rsync" class="tablesorter">
+                <thead>
+                <tr>
+                    <th>Continent</th>
+                    <th>Provider</th>
+                    <th>Mirror URL</th>
+                    <th>Country</th>
+                    <th>IPv4</th>
+                    <th>IPv6</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for rsyncmirror in rsyncmirror %}
+                <tr>
+                    <td>{{ rsyncmirror.country.continent }}</td>
+                    <td>{{ rsyncmirror.provider.name }}</td>
+                    <td><a href="{{ rsyncmirror.url.url }}">rsync</a></td>
+                    <td>{{ rsyncmirror.country.code }}</td>
+                    <td>{{ rsyncmirror.url.ipv4 }}</td>
+                    <td>{{ rsyncmirror.url.ipv6 }}</td>
+                    <td>{{ rsyncmirror.url.status }}</td>
+                </tr>
+                {% endfor %}
+                </tbody>
+                </table>
+            <h2>Rsync Usage</h2>
+            <ul>
+                <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage.png">Full Graph</a></li>
+                <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage-last4weeks.png">Past Month Graph</a></li>
+            </ul>
+            <h2>Mirroring Resources</h2>
+            <ul>
+                <li><a href="http://www.gentoo.org/doc/en/rsync.xml">How to set up a Gentoo rsync mirror</a></li>
+                <li><a href="http://www.gentoo.org/doc/en/source_mirrors.xml">How to set up a Gentoo source mirror</a></li>
+            </ul>
+            <br />
+            <div align="center"> © Gentoo Foundation, Inc.</div>
+        </div>
+    </body>
 </html>
