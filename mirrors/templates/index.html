@@ -52,7 +52,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for distmirror in distmirror %}
+                {% for distfilesmirror in distfilesmirrors %}
                 <tr>
                     <td>{{ distmirror.country.continent }}</td>
                     <td>{{ distmirror.provider.name }}</td>
@@ -79,7 +79,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                {% for rsyncmirror in rsyncmirror %}
+                {% for rsyncmirror in rsyncmirrors %}
                 <tr>
                     <td>{{ rsyncmirror.country.continent }}</td>
                     <td>{{ rsyncmirror.provider.name }}</td>
