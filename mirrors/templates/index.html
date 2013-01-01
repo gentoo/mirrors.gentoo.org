@@ -1,37 +1,6 @@
-{% load staticfiles %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Gentoo Linux Mirrors</title>
-        <link type="image/x-icon" href="http://www.gentoo.org/favicon.ico" rel="shortcut icon" />
-        <link rel="stylesheet" type="text/css" href="{% static "css/tablesort-gentoo.css" %}">
-        <link rel="stylesheet" type="text/css" href="{% static "css/gentoo.css" %}">
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static "js/jquery-latest.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/jquery.tablesorter.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/sort.js" %}"></script>
-    </head>
-    <body>
-        <!-- gentoo-bar from bugs.gentoo.org -->
-        <div id="gentoo-bar">
-            <a class="home-link" title="Go to the Gentoo Bugzilla homepage" href="/">
-                <img alt="Gentoo Websites Logo" src="https://www.bugs.gentoo.org/extensions/Gentoo/web/gentoo_org.png">
-            </a>
-            <div>
-                Go to:
-                <a href="http://www.gentoo.org/">Gentoo Home</a>
-                <a href="http://www.gentoo.org/doc/en/index.xml">Documentation</a>
-                <a href="http://forums.gentoo.org/">Forums</a>
-                <a href="http://www.gentoo.org/main/en/lists.xml">Lists</a>
-                <a href="http://bugs.gentoo.org">Bugs</a>
-                <a href="http://planet.gentoo.org">Planet</a>
-                <a href="http://store.gentoo.org">Store</a>
-                <a href="http://wiki.gentoo.org">Wiki</a>
-                <a class="active" href="http://mirrors.gentoo.org">Mirrors</a>
-                <strong><a href="http://www.gentoo.org/main/en/where.xml">Get Gentoo!</a></strong>
-            </div>
-        </div>
+{% extends "base.html" %}
 
+{% block content %}
         <div id="gentoo-main">
             <div id="header">
                 <h1 style="text-align:center;">Gentoo Linux Mirrors</h1>
@@ -105,5 +74,4 @@
             <br />
             <div align="center"> © Gentoo Foundation, Inc.</div>
         </div>
-    </body>
-</html>
+{% endblock %}
