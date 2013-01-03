@@ -9,3 +9,7 @@ def index(request):
         'rsyncmirrors': rsyncmirrors,
         'distfilesmirrors': distfilesmirrors,
     }, context_instance=RequestContext(request))
+
+def contacts(request):
+    return render_to_response('contacts.html',{},
+                              context_instance=RequestContext(request))

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% block extra_js_top %}
+        <script type="text/javascript" src="{% static "js/field-addition.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="gentoo-main">
+    <form name="frm" method="POST">
+    <strong>Name:</strong>
+    <input type="text" name="name" /><br />
+    <strong>Email:</strong><br />
+    <div id="mail_area">
+	<input type="text" name="mail_1" id="mail_1" />
+        <input type="button" value="+" onclick="addField('mail_area','mail_',0);" />
+    </div>
+    </form>
+</div>
+{% endblock %}
