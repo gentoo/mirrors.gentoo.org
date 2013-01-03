@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <div id="gentoo-main">
-            <div id="header">
-                <h1 style="text-align:center;">Gentoo Linux Mirrors</h1>
-                <span> Some text for the Mirrors </span>
-            </div>
-            <hr width="600"/>
-            <h2>Distfiles Mirrors</h2>
-            <table id="distfiles" class="tablesorter">
-                <thead>
+    <div id="gentoo-main">
+        <div id="header">
+            <h1 style="text-align:center;">Gentoo Linux Mirrors</h1>
+            <span> Some text for the Mirrors </span>
+        </div>
+        <hr width="600"/>
+        <h2>Distfiles Mirrors</h2>
+        <table id="distfiles" class="tablesorter">
+            <thead>
                 <tr>
                     <th>Continent</th>
                     <th>Provider</th>
@@ -19,8 +19,8 @@
                     <th>IPv6</th>
                     <th>Status</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 {% for distfilesmirror in distfilesmirrors %}
                 <tr>
                     <td>{{ distfilesmirror.country.continent }}</td>
@@ -32,11 +32,11 @@
                     <td>{{ distfilesmirror.http.status }}</td>
                 </tr>
                 {% endfor %}
-                </tbody>
-            </table>
-            <h2>Rsync Mirrors</h2>
-            <table id="rsync" class="tablesorter">
-                <thead>
+            </tbody>
+        </table>
+        <h2>Rsync Mirrors</h2>
+        <table id="rsync" class="tablesorter">
+            <thead>
                 <tr>
                     <th>Continent</th>
                     <th>Provider</th>
@@ -46,8 +46,8 @@
                     <th>IPv6</th>
                     <th>Status</th>
                 </tr>
-                </thead>
-                <tbody>
+            </thead>
+            <tbody>
                 {% for rsyncmirror in rsyncmirrors %}
                 <tr>
                     <td>{{ rsyncmirror.country.continent }}</td>
@@ -59,19 +59,19 @@
                     <td>{{ rsyncmirror.url.status }}</td>
                 </tr>
                 {% endfor %}
-                </tbody>
-                </table>
-            <h2>Rsync Usage</h2>
-            <ul>
-                <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage.png">Full Graph</a></li>
-                <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage-last4weeks.png">Past Month Graph</a></li>
-            </ul>
-            <h2>Mirroring Resources</h2>
-            <ul>
-                <li><a href="http://www.gentoo.org/doc/en/rsync.xml">How to set up a Gentoo rsync mirror</a></li>
-                <li><a href="http://www.gentoo.org/doc/en/source_mirrors.xml">How to set up a Gentoo source mirror</a></li>
-            </ul>
-            <br />
-            <div align="center"> © Gentoo Foundation, Inc.</div>
-        </div>
-{% endblock %}
+            </tbody>
+        </table>
+        <h2>Rsync Usage</h2>
+        <ul>
+            <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage.png">Full Graph</a></li>
+            <li><a href="http://mirrorstats.gentoo.org/rsync/rsync-usage-last4weeks.png">Past Month Graph</a></li>
+        </ul>
+        <h2>Mirroring Resources</h2>
+        <ul>
+            <li><a href="http://www.gentoo.org/doc/en/rsync.xml">How to set up a Gentoo rsync mirror</a></li>
+            <li><a href="http://www.gentoo.org/doc/en/source_mirrors.xml">How to set up a Gentoo source mirror</a></li>
+        </ul>
+        <br />
+        <div align="center"> © Gentoo Foundation, Inc.</div>
+    </div>
+    {% endblock %}
