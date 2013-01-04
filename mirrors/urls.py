@@ -1,8 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import patterns
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = patterns('',
-    url(r'^$', 'mirrors.views.index'),
+    (r'^$', 'mirrors.views.index'),
+    (r'^settings/$', 'mirrors.views.settings'),
 )
 
 urlpatterns += staticfiles_urlpatterns()
