@@ -12,31 +12,30 @@ def index(request):
     }, context_instance=RequestContext(request))
 
 def settings(request):
+    return render_to_response('settings.html', {
+    }, context_instance = RequestContext(request))
+
+def settings_add_provider(request):
     providerform = None
-    contactform = None
-    rsyncmirrorform = None
-    distfilesmirrorform = None
     if request.method == 'POST':
         providerform = ProviderForm(request.POST)
-        contactform = ContactForm(request.POST)
-        rsyncmirrorform = RsyncMirrorForm(request.POST)
-        distfilesmirrorform = DistfilesMirrorForm(request.POST)
         if providerform.is_valid():
-            pass
-        if contactform.is_valid():
-            pass
-        if rsyncmirrorform.is_valid():
-            pass
-        if distfilesmirrorform.is_valid():
             pass
     else:
         providerform = ProviderForm()
-        contactform = ContactForm()
-        rsyncmirrorform = RsyncMirrorForm()
-        distfilesmirrorform = DistfilesMirrorForm()
-    return render_to_response('settings.html', {
+    print request.POST
+    return render_to_response('settings_add_provider.html', {
         'providerform': providerform,
+    }, context_instance = RequestContext(request))
+
+def settings_add_contact(request):
+    contactform = None
+    if request.method == 'POST':
+        contactform = ContactForm(request.POST)
+        if contactform.is_valid():
+            pass
+    else:
+        contactform = ContactForm()
+    return render_to_response('settings_add_contact.html', {
         'contactform': contactform,
-        'rsyncmirrorform': rsyncmirrorform,
-        'distfilesmirrorform': distfilesmirrorform,
     }, context_instance = RequestContext(request))
