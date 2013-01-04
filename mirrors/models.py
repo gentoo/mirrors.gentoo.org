@@ -9,12 +9,12 @@ class ContactEmail(models.Model):
 class Contacts(models.Model):
     name = models.CharField(max_length=255)
     email = models.ForeignKey(ContactEmail)
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, verbose_name='URL')
 
 class Providers(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(null=True)
-    url = models.URLField(null=True)
+    url = models.URLField(null=True, verbose_name='URL')
 
 class MirrorAlias(models.Model):
     alias = models.URLField()
@@ -41,9 +41,9 @@ class Mirrors(models.Model):
         abstract = True
 
 class RsyncMirrors(Mirrors):
-    url = models.OneToOneField(MirrorURL)
+    url = models.OneToOneField(MirrorURL, verbose_name='URL')
 
 class DistfilesMirrors(Mirrors):
-    http = models.OneToOneField(MirrorURL, null=True, related_name='http')
-    ftp = models.OneToOneField(MirrorURL, null=True, related_name='ftp')
+    http = models.OneToOneField(MirrorURL, null=True, related_name='http', verbose_name='HTTP')
+    ftp = models.OneToOneField(MirrorURL, null=True, related_name='ftp', verbose_name='FTP')
     rsync = models.OneToOneField(MirrorURL, null=True, related_name='rsync')
