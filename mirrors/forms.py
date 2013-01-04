@@ -1,5 +1,9 @@
 from django.forms import ModelForm
-from mirrors.models import Contacts, RsyncMirrors, DistfilesMirrors
+from mirrors.models import Providers, Contacts, RsyncMirrors, DistfilesMirrors
+
+class ProviderForm(ModelForm):
+    class Meta:
+        model = Providers
 
 class ContactForm(ModelForm):
     class Meta:
