@@ -1,8 +1,18 @@
-/* Gentoo bar */
 body {
         background: none repeat scroll 0 0 #D2D0D4;
         font-family: Helvetica,Arial,Geneva;
         margin: 1em;
+}
+
+.container label {
+    display: inline-block;
+    width: 5em;
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+.container input {
+    display: inline-block;
 }
 
 #gentoo-main {
@@ -11,12 +21,14 @@ body {
         border-radius: 5px 5px 5px 5px;
         color: black;
         font-size: 10pt;
-	font-family: Sans-Serif;
+	    font-family: Sans-Serif;
         padding: 10px;
 }
+
 #header {
     text-align:center;
 }
+
 div#gentoo-bar {
    background: url("../img/gentoo-header-bar-bg.png") repeat-x;
    margin-bottom: 2em;
