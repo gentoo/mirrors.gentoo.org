@@ -12,9 +12,9 @@ class Contacts(models.Model):
     url = models.URLField(null=True, verbose_name='URL')
 
 class Providers(models.Model):
-    name = models.CharField(max_length=255)
-    email = models.EmailField(null=True)
-    url = models.URLField(null=True, verbose_name='URL')
+    name = models.CharField(max_length=255, unique=True)
+    email = models.EmailField(null=True, unique=True)
+    url = models.URLField(null=True, verbose_name='URL', unique=True)
 
 class MirrorAlias(models.Model):
     alias = models.URLField()
