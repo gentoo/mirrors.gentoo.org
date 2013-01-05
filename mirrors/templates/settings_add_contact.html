@@ -9,18 +9,13 @@
     <div id="gentoo-main">
         <form action="/settings/" method="POST">{% csrf_token %}
             {% for field in contactform %}
-                {% if field.label == "Email" %}
-                    <div id="mail_area">
-                        Bugzilla account | Email:<br />
-                        <input type="checkbox" />
-                        <input type="text" name="mail_1" id="mail_1" />
-                        <input type="button" value="+" onclick="addField('mail_area','mail_',0);" />
-                        <br />
-                    </div>
-                {% else %}
+                {% if field.label != "Email" %}
                     {{ field.label_tag }}: {{ field }}<br />
                 {% endif %}
             {% endfor %}
+            <div id="mail_area">
+                Email: <input type="button" value="+" onclick="addField('mail_area','mail_',0);" />
+            </div>
             <input class="button" type="submit" value="Save" name="save" />
         </form>
     </div>
