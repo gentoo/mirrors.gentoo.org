@@ -20,13 +20,8 @@ def settings_add_provider(request):
     if request.method == 'POST':
         form = ProviderForm(request.POST)
         if form.is_valid():
-            provider = Providers(
-                name = form.cleaned_data['name'],
-                email = form.cleaned_data['email'],
-                url = form.cleaned_data['url'],
-            )
             try:
-                provider.save()
+                form.save()
                 return HttpResponseRedirect('/settings/')
             except:
                 raise
