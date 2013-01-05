@@ -3,18 +3,29 @@
 
 {% block content %}
     <div id="gentoo-main">
+        <h2>Contacts</h2>
+        <h3>Add new contact:</h3>
+        <div class="container">
         <form action="." method="POST">{% csrf_token %}
             {% for field in form %}
                 {{ field.label_tag }}: {{ field }}<br />
             {% endfor %}
+            <p>
             {% for form in formset.forms %}
                 {% for field in form %}
-                    {% if field.label != "Id" %}
+                {% if field.label != "Id" %}
+                    {% if field.label == "Email" %}
+                        {{ field.label_tag }}: {{ field }}
+                    {% endif %}
+                    {% if field.label == "Bugzilla" %}
                         {{ field.label_tag }}: {{ field }}<br />
                     {% endif %}
+                {% endif %}
                 {% endfor %}
              {% endfor %}
-            <input class="button" type="submit" value="Save" name="save" />
+             </p>
+             <input class="button" type="submit" value="Save" name="save" />
         </form>
+    </div>
     </div>
 {% endblock %}
