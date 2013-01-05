@@ -1,3 +1,4 @@
+from django.forms.models import modelformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
@@ -32,13 +33,18 @@ def settings_add_provider(request):
     }, context_instance = RequestContext(request))
 
 def settings_add_contact(request):
-    contactform = None
+    ContactEmailFormSet = modelformset_factory(ContactEmail, extra=5)
+    formset = ContactEmailFormSet()
     if request.method == 'POST':
-        contactform = ContactForm(request.POST)
-        if contactform.is_valid():
-            pass
+        formset = ContactEmailFormSet(request.POST)
+        form = ContactForm(request.POST)
+        if formset.is_valid():
+            if form.is_valid():
+                pass
     else:
-        contactform = ContactForm()
+        formset = ContactEmailFormSet()
+        form = ContactForm()
     return render_to_response('settings_add_contact.html', {
-        'contactform': contactform,
+        'form': form,
+        'formset': formset,
     }, context_instance = RequestContext(request))

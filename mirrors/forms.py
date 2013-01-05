@@ -1,13 +1,19 @@
 from django.forms import ModelForm
-from mirrors.models import Providers, Contacts, RsyncMirrors, DistfilesMirrors
+from django import forms
+from mirrors.models import Providers, Contacts, ContactEmail, RsyncMirrors, DistfilesMirrors
 
 class ProviderForm(ModelForm):
     class Meta:
         model = Providers
 
+class ContactEmailForm(ModelForm):
+    class Meta:
+        model = ContactEmail
+
 class ContactForm(ModelForm):
     class Meta:
         model = Contacts
+        exclude = ['email']
 
 class RsyncMirrorForm(ModelForm):
     class Meta:
@@ -16,4 +22,3 @@ class RsyncMirrorForm(ModelForm):
 class DistfilesMirrorForm(ModelForm):
     class Meta:
         model = DistfilesMirrors
-

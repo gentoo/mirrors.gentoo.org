@@ -1,21 +1,19 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-{% block extra_js_top %}
-    <script type="text/javascript" src="{% static "js/field-addition.js" %}"></script>
-{% endblock %}
-
 {% block content %}
     <div id="gentoo-main">
-        <form action="/settings/" method="POST">{% csrf_token %}
-            {% for field in contactform %}
-                {% if field.label != "Email" %}
-                    {{ field.label_tag }}: {{ field }}<br />
-                {% endif %}
+        <form action="." method="POST">{% csrf_token %}
+            {% for field in form %}
+                {{ field.label_tag }}: {{ field }}<br />
             {% endfor %}
-            <div id="mail_area">
-                Email: <input type="button" value="+" onclick="addField('mail_area','mail_',0);" />
-            </div>
+            {% for form in formset.forms %}
+                {% for field in form %}
+                    {% if field.label != "Id" %}
+                        {{ field.label_tag }}: {{ field }}<br />
+                    {% endif %}
+                {% endfor %}
+             {% endfor %}
             <input class="button" type="submit" value="Save" name="save" />
         </form>
     </div>
