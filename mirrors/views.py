@@ -1,6 +1,7 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from mirrors.models import RsyncMirrors, DistfilesMirrors
+from mirrors.models import Providers, RsyncMirrors, DistfilesMirrors
 from mirrors.forms import *
 
 def index(request):
@@ -16,16 +17,23 @@ def settings(request):
     }, context_instance = RequestContext(request))
 
 def settings_add_provider(request):
-    providerform = None
     if request.method == 'POST':
-        providerform = ProviderForm(request.POST)
-        if providerform.is_valid():
-            pass
+        form = ProviderForm(request.POST)
+        if form.is_valid():
+            provider = Providers(
+                name = form.cleaned_data['name'],
+                email = form.cleaned_data['email'],
+                url = form.cleaned_data['url'],
+            )
+            try:
+                provider.save()
+                return HttpResponseRedirect('/settings/')
+            except:
+                raise
     else:
-        providerform = ProviderForm()
-    print request.POST
+        form = ProviderForm()
     return render_to_response('settings_add_provider.html', {
-        'providerform': providerform,
+        'form': form,
     }, context_instance = RequestContext(request))
 
 def settings_add_contact(request):
