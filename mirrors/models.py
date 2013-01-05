@@ -11,10 +11,16 @@ class Contacts(models.Model):
     email = models.ForeignKey(ContactEmail)
     url = models.URLField(null=True, verbose_name='URL')
 
+    def __unicode__(self):
+        return self.name
+
 class Providers(models.Model):
     name = models.CharField(max_length=255, unique=True)
     email = models.EmailField(null=True, unique=True)
     url = models.URLField(null=True, verbose_name='URL', unique=True)
+
+    def __unicode__(self):
+        return self.name
 
 class MirrorAlias(models.Model):
     alias = models.URLField()
