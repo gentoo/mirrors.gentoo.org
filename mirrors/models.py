@@ -3,21 +3,24 @@ from mirrors.choices import *
 from international.models import Country
 
 class ContactEmail(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     bugzilla = models.BooleanField(default=False)
 
+    def __unicode__(self):
+        return self.email
+
 class Contacts(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, unique=True)
     email = models.ForeignKey(ContactEmail)
-    url = models.URLField(null=True, verbose_name='URL')
+    url = models.URLField(blank=True, verbose_name='URL')
 
     def __unicode__(self):
         return self.name
 
 class Providers(models.Model):
     name = models.CharField(max_length=255, unique=True)
-    email = models.EmailField(null=True, unique=True)
-    url = models.URLField(null=True, verbose_name='URL', unique=True)
+    email = models.EmailField(blank=True)
+    url = models.URLField(blank=True, verbose_name='URL')
 
     def __unicode__(self):
         return self.name
