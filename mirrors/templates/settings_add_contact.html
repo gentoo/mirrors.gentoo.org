@@ -13,12 +13,12 @@
             {{ formset.management_form }}
             {% for form in formset.forms %}
                 {% for field in form %}
-                    {% if field.label != "Id" %}
-                        {% if field.label == "Bugzilla" %}
-                            {{ field.label_tag }}: {{ field }}<br />
-                        {% else %}
-                            {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}
-                        {% endif %}
+                    {% if field.label == "Id" %}
+                        {{ field }}
+                    {% elif field.label == "Bugzilla" %}
+                        {{ field.label_tag }}: {{ field }}<br />
+                    {% else %}
+                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}
                     {% endif %}
                 {% endfor %}
              {% endfor %}
