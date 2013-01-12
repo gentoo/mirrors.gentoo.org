@@ -13,7 +13,6 @@ class ContactEmailForm(ModelForm):
 class ContactForm(ModelForm):
     class Meta:
         model = Contacts
-        exclude = ['email']
 
 class RsyncMirrorForm(ModelForm):
     class Meta:

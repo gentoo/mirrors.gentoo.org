@@ -2,20 +2,21 @@ from django.db import models
 from mirrors.choices import *
 from international.models import Country
 
+
+class Contacts(models.Model):
+    name = models.CharField(max_length=255, unique=True)
+    url = models.URLField(blank=True, verbose_name='URL')
+
+    def __unicode__(self):
+        return self.name
+
 class ContactEmail(models.Model):
+    contact = models.ForeignKey(Contacts)
     email = models.EmailField(unique=True)
     bugzilla = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.email
-
-class Contacts(models.Model):
-    name = models.CharField(max_length=255, unique=True)
-    email = models.ForeignKey(ContactEmail)
-    url = models.URLField(blank=True, verbose_name='URL')
-
-    def __unicode__(self):
-        return self.name
 
 class Providers(models.Model):
     name = models.CharField(max_length=255, unique=True)
