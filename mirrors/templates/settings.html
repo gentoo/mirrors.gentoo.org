@@ -2,13 +2,23 @@
 {% load staticfiles %}
 
 {% block content %}
-    <div id="gentoo-main">
-        <strong>Add:</strong>
-        <ul>
+<div id="gentoo-main">
+        <div id="header">
+        <h2>Settings</h2>
+        <div id="sidebar">
+        <ul style="float:left;list-style-type: none;">
             <li><a href="/settings/add/provider">Provider</a></li>
             <li><a href="/settings/add/contact">Contact</a></li>
-            <li>Rsync Mirror</li>
-            <li>Distfiles Mirror</li>
-        </ul>
-    </div>
+            <li><a href="#">Rsync Mirror</a></li>
+            <li><a href="#">Distfiles Mirror</a></li>
+       </ul>
+   </div>
+   </div>
+   <div id="main">
+       <p> Lorem ipsum dolor </p>
+   </div>
+   <div id="footer">
+       <p>© Gentoo Foundation, Inc.</p>
+   </div>
+</div>
 {% endblock %}

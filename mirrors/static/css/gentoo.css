@@ -70,3 +70,31 @@ div#gentoo-bar div a.active {
     background-color: white;
     font-weight: bold;
 }
+
+#main {
+    width: 620px; display: block; 
+    position: relative;
+    margin: 0 0 30px 300px; 
+    padding: 5px 22px 200px 22px;
+    border: solid 1px #aaa;
+}
+
+#sidebar {
+    float:left;
+    width:200px;
+    font-size:20px;
+    border-right: solid 1px #aaa;
+}
+
+div#sidebar a {
+    text-decoration:none;
+    color: black;
+}
+
+div#sidebar a:hover {
+    background-color: #A898DD;
+}
+#footer {
+    clear:both;
+    text-align:center;
+}
