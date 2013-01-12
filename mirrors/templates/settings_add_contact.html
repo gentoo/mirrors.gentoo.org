@@ -6,20 +6,20 @@
         <h2>Contacts</h2>
         <h3>Add new contact:</h3>
         <div class="container">
-        <form action="." method="POST">{% csrf_token %}
-            {% for field in form %}
-                {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
-            {% endfor %}
-            {{ formset.management_form }}
-            {% for form in formset %}
+            <form action="." method="POST">{% csrf_token %}
                 {% for field in form %}
-                    {% if field.label != "Id" %}
-                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
-                    {% endif %}
+                    {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
                 {% endfor %}
-            {% endfor %}
-            <input class="button" type="submit" value="Save" name="save" />
-        </form>
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    {% for field in form %}
+                        {% if field.label != "Id" and field.label != "Contact" %}
+                            {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                <input class="button" type="submit" value="Save" name="save" />
+            </form>
     </div>
     </div>
 {% endblock %}
