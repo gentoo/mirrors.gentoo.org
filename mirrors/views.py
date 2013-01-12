@@ -36,10 +36,21 @@ def settings_add_contact(request):
     ContactEmailFormSet = modelformset_factory(ContactEmail, extra=5)
     if request.method == 'POST':
         form = ContactForm(request.POST)
-        formset = ContactEmailFormSet(request.POST, queryset=ContactEmail.objects.none())
-        if formset.is_valid() and form.is_valid():
-            formset.save()
-            #form.save() <- WIP
+        if form.is_valid():
+            form.save()
+            formset = ContactEmailFormSet(
+                request.POST,
+                queryset=ContactEmail.objects.none(),
+                initial=[{'contact': Contacts.objects.get(name=form.cleaned_data['name'])}]
+            )
+            if formset.is_valid():
+                try:
+                    formset.save()
+                    return HttpResponseRedirect('/settings/')
+                except:
+                    raise
+            else:
+                Contacts.objects.get(name=form.cleaned_data['name']).delete()
     else:
         form = ContactForm()
         formset = ContactEmailFormSet(queryset=ContactEmail.objects.none())
