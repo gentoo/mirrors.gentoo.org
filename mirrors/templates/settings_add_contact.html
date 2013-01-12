@@ -11,18 +11,14 @@
                 {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
             {% endfor %}
             {{ formset.management_form }}
-            {% for form in formset.forms %}
+            {% for form in formset %}
                 {% for field in form %}
-                    {% if field.label == "Id" %}
-                        {{ field }}
-                    {% elif field.label == "Bugzilla" %}
-                        {{ field.label_tag }}: {{ field }}<br />
-                    {% else %}
-                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}
+                    {% if field.label != "Id" %}
+                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
                     {% endif %}
                 {% endfor %}
-             {% endfor %}
-             <input class="button" type="submit" value="Save" name="save" />
+            {% endfor %}
+            <input class="button" type="submit" value="Save" name="save" />
         </form>
     </div>
     </div>

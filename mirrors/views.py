@@ -34,16 +34,15 @@ def settings_add_provider(request):
 
 def settings_add_contact(request):
     ContactEmailFormSet = modelformset_factory(ContactEmail, extra=5)
-    formset = ContactEmailFormSet()
     if request.method == 'POST':
-        formset = ContactEmailFormSet(request.POST)
         form = ContactForm(request.POST)
-        if formset.is_valid():
-            if form.is_valid():
-                pass
+        formset = ContactEmailFormSet(request.POST, queryset=ContactEmail.objects.none())
+        if formset.is_valid() and form.is_valid():
+            formset.save()
+            #form.save() <- WIP
     else:
-        formset = ContactEmailFormSet()
         form = ContactForm()
+        formset = ContactEmailFormSet(queryset=ContactEmail.objects.none())
     return render_to_response('settings_add_contact.html', {
         'form': form,
         'formset': formset,
