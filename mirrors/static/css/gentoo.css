@@ -1,3 +1,4 @@
+/* --- Main template ---- */
 body {
         background: none repeat scroll 0 0 #D2D0D4;
         font-family: Helvetica,Arial,Geneva;
@@ -29,6 +30,7 @@ body {
     text-align:center;
 }
 
+/* --- Gentoo bar ---- */
 div#gentoo-bar {
    background: url("../img/gentoo-header-bar-bg.png") repeat-x;
    margin-bottom: 2em;
@@ -71,6 +73,7 @@ div#gentoo-bar div a.active {
     font-weight: bold;
 }
 
+/* --- Settings ---- */
 #main {
     width: 620px; display: block; 
     position: relative;
@@ -94,6 +97,7 @@ div#sidebar a {
 div#sidebar a:hover {
     background-color: #A898DD;
 }
+
 #footer {
     clear:both;
     text-align:center;
