@@ -1,8 +1,7 @@
-{% extends "base.html" %}
+{% extends "settings.html" %}
 {% load staticfiles %}
 
-{% block content %}
-    <div id="gentoo-main">
+{% block settings_content %}
         <div class="container">
             <h2>Providers</h2>
             <h3>Add a new provider:</h3>
@@ -13,5 +12,4 @@
                 <input class="button" type="submit" value="Save" name="save" />
             </form>
         </div>
-    </div>
 {% endblock %}

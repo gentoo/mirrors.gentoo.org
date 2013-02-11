@@ -1,8 +1,7 @@
-{% extends "base.html" %}
+{% extends "settings.html" %}
 {% load staticfiles %}
 
-{% block content %}
-    <div id="gentoo-main">
+{% block settings_content %}
         <h2>Contacts</h2>
         <h3>Add new contact:</h3>
         <div class="container">
@@ -20,6 +19,10 @@
                 {% endfor %}
                 <input class="button" type="submit" value="Save" name="save" />
             </form>
-    </div>
-    </div>
+            {% for dict in formset.errors %}
+                {% for error in dict.values %}
+                        {{ error }}
+                {% endfor %}
+            {% endfor %}
+        </div>
 {% endblock %}

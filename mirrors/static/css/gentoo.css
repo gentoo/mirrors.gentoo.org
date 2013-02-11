@@ -78,7 +78,7 @@ div#gentoo-bar div a.active {
     width: 620px; display: block; 
     position: relative;
     margin: 0 0 30px 300px; 
-    padding: 5px 22px 200px 22px;
+    padding: 1px 22px 20px 22px;
     border: solid 1px #aaa;
 }
 
