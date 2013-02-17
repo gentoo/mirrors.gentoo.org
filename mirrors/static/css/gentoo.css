@@ -26,8 +26,32 @@ body {
         padding: 10px;
 }
 
-#header {
-    text-align:center;
+#header li {
+    float: left;
+    border: 1px solid;
+    border-bottom-width: 0;
+    display: inline;
+    //border: solid;
+    //border-width: 1px 1px 0 1px;
+    margin: 0 0.5em 0 0;
+}
+
+#header li a {
+    padding: 0 1em;
+}
+
+#header #selected {
+    padding-bottom: 1px;
+    background: white;
+}
+
+#content {
+    clear: both;
+}
+
+h1 {
+    margin: 0;
+    padding: 0 0 1em 0;
 }
 
 /* --- Gentoo bar ---- */
@@ -82,23 +106,46 @@ div#gentoo-bar div a.active {
     border: solid 1px #aaa;
 }
 
-#sidebar {
-    float:left;
-    width:200px;
-    font-size:20px;
-    border-right: solid 1px #aaa;
-}
-
-div#sidebar a {
+div#header a {
     text-decoration:none;
     color: black;
 }
 
-div#sidebar a:hover {
+div#header a:hover {
     background-color: #A898DD;
+}
+
+/* tabs */
+
+.tabbed .tabbody {
+    background: #f8f8f8;
+    padding: 1em;
+    border-style: solid;
+    border-color: #000000;
+    border-width: 0 1px 1px 1px;
+}
+
+.tabs {
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+}
+
+.tabs td {
+    background: #c8c8c8;
+	float: left;
+	border: 1px solid;
+	border-bottom-width: 0;
+	margin: 0 0.5em 0 0;
+}
+
+.tabs td.selected {
+    background: #f8f8f8;
+    border-width: 1px 1px 0 1px;
 }
 
 #footer {
     clear:both;
     text-align:center;
 }
+

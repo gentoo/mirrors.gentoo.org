@@ -14,7 +14,7 @@ def index(request):
     }, context_instance=RequestContext(request))
 
 def settings(request):
-    return render_to_response('settings.html', {
+    return render_to_response('settings_general.html', {
     }, context_instance = RequestContext(request))
 
 def settings_add_provider(request):
