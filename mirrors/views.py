@@ -36,13 +36,22 @@ def settings_add_contact(request):
     ContactEmailFormSet = modelformset_factory(ContactEmail, extra=5)
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        formset = ContactEmailFormSet(
+            request.POST,
+            queryset=ContactEmail.objects.none()
+        )
         if form.is_valid():
             form.save()
-            formset = ContactEmailFormSet(
-                request.POST,
-                queryset=ContactEmail.objects.none(),
-                initial=[{'contact': Contacts.objects.get(name=form.cleaned_data['name'])}]
-            )
+            '''
+            Copy request.POST to make it mutable, and add in the newly created
+            'data' QueryDict the table ID of the newly created contact
+            '''
+            form_contact = Contacts.objects.get(name=form.cleaned_data['name']).id
+            data = request.POST.copy()
+            for i in range(5):
+                if data['form-%s-email' % i]:
+                    data.update({'form-%s-contact' % i: form_contact})
+            formset = ContactEmailFormSet(data, queryset=ContactEmail.objects.none())
             if formset.is_valid():
                 try:
                     formset.save()

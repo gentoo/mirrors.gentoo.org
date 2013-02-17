@@ -19,10 +19,5 @@
                 {% endfor %}
                 <input class="button" type="submit" value="Save" name="save" />
             </form>
-            {% for dict in formset.errors %}
-                {% for error in dict.values %}
-                        {{ error }}
-                {% endfor %}
-            {% endfor %}
         </div>
 {% endblock %}
