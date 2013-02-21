@@ -30,18 +30,18 @@ class MirrorAlias(models.Model):
     alias = models.URLField()
 
 class MirrorBugs(models.Model):
-    number = models.IntegerField()
+    number = models.IntegerField(blank=True, verbose_name="Mirror Bug")
 
 class MirrorURL(models.Model):
-    url = models.URLField()
+    url = models.URLField(verbose_name="URL")
     alias = models.ForeignKey(MirrorAlias, null=True)
-    ipv4 = models.BooleanField(default=True)
-    ipv6 = models.BooleanField(default=False)
+    ipv4 = models.BooleanField(default=True, verbose_name="IPv4")
+    ipv6 = models.BooleanField(default=False, verbose_name="IPv6")
     status = models.CharField(max_length=10,
         choices=STATUS_CHOICES,
         default='Working')
 
-class Mirrors(models.Model):
+class Mirror(models.Model):
     bugs = models.ManyToManyField(MirrorBugs, null=True)
     country = models.ForeignKey(Country)
     contacts = models.ManyToManyField(Contacts, null=True)
@@ -50,10 +50,10 @@ class Mirrors(models.Model):
     class Meta:
         abstract = True
 
-class RsyncMirrors(Mirrors):
-    url = models.OneToOneField(MirrorURL, verbose_name='URL')
+class PortageMirror(Mirror):
+    url = models.ForeignKey(MirrorURL, unique=True)
 
-class DistfilesMirrors(Mirrors):
-    http = models.OneToOneField(MirrorURL, null=True, related_name='http', verbose_name='HTTP')
-    ftp = models.OneToOneField(MirrorURL, null=True, related_name='ftp', verbose_name='FTP')
-    rsync = models.OneToOneField(MirrorURL, null=True, related_name='rsync')
+class DistfilesMirror(Mirror):
+    http = models.ForeignKey(MirrorURL, null=True, unique=True, related_name='http', verbose_name='HTTP')
+    ftp = models.ForeignKey(MirrorURL, null=True, unique=True, related_name='ftp', verbose_name='FTP')
+    rsync = models.ForeignKey(MirrorURL, null=True, unique=True, related_name='rsync')
