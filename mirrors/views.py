@@ -5,17 +5,20 @@ from django.template import RequestContext
 from mirrors.models import *
 from mirrors.forms import *
 
+
 def index(request):
     portagemirror = PortageMirror.objects.all()
     distfilesmirror = DistfilesMirror.objects.all()
     return render_to_response('index.html', {
         'portagemirror': portagemirror,
         'distfilesmirror': distfilesmirror,
-    }, context_instance = RequestContext(request))
+    }, context_instance=RequestContext(request))
+
 
 def settings(request):
     return render_to_response('settings_general.html', {
-    }, context_instance = RequestContext(request))
+    }, context_instance=RequestContext(request))
+
 
 def settings_add_provider(request):
     if request.method == 'POST':
@@ -30,7 +33,8 @@ def settings_add_provider(request):
         form = ProviderForm()
     return render_to_response('settings_add_provider.html', {
         'form': form,
-    }, context_instance = RequestContext(request))
+    }, context_instance=RequestContext(request))
+
 
 def settings_add_contact(request):
     ContactEmailFormSet = modelformset_factory(ContactEmail, extra=5)
@@ -46,12 +50,14 @@ def settings_add_contact(request):
             Copy request.POST to make it mutable, and add in the newly created
             'data' QueryDict the table ID of the newly created contact
             '''
-            form_contact = Contacts.objects.get(name=form.cleaned_data['name']).id
+            form_contact = Contacts.objects.get(
+                name=form.cleaned_data['name']).id
             data = request.POST.copy()
             for i in range(5):
                 if data['form-%s-email' % i]:
                     data.update({'form-%s-contact' % i: form_contact})
-            formset = ContactEmailFormSet(data, queryset=ContactEmail.objects.none())
+            formset = ContactEmailFormSet(
+                data, queryset=ContactEmail.objects.none())
             if formset.is_valid():
                 try:
                     formset.save()
@@ -66,7 +72,8 @@ def settings_add_contact(request):
     return render_to_response('settings_add_contact.html', {
         'form': form,
         'formset': formset,
-    }, context_instance = RequestContext(request))
+    }, context_instance=RequestContext(request))
+
 
 def settings_add_portagemirror(request):
     UrlForm = modelform_factory(MirrorURL, form=MirrorURLForm)
@@ -83,7 +90,7 @@ def settings_add_portagemirror(request):
         if alias_form.is_valid()and url_form.is_valid():
             alias = alias_form.save()
             url = url_form.save(commit=False)
-            url.alias  = alias
+            url.alias = alias
             url.save()
             if portagemirror_form.is_valid() and bugs_formset.save():
                 try:
@@ -104,4 +111,4 @@ def settings_add_portagemirror(request):
         'url_form': url_form,
         'alias_form': alias_form,
         'bugs_formset': bugs_formset,
-    }, context_instance = RequestContext(request))
+    }, context_instance=RequestContext(request))
