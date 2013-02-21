@@ -21,20 +21,20 @@
                 </tr>
             </thead>
             <tbody>
-                {% for distfilesmirror in distfilesmirrors %}
+                {% for dfmr in distfilesmirror %}
                 <tr>
-                    <td>{{ distfilesmirror.country.continent }}</td>
-                    <td>{{ distfilesmirror.provider.name }}</td>
-                    <td><a href="{{ distfilesmirror.http.url }}">HTTP</a></td>
-                    <td>{{ distfilesmirror.country.code }}</td>
-                    <td>{{ distfilesmirror.http.ipv4 }}</td>
-                    <td>{{ distfilesmirror.http.ipv6 }}</td>
-                    <td>{{ distfilesmirror.http.status }}</td>
+                    <td>{{ dfmr.country.continent }}</td>
+                    <td>{{ dfmr.provider.name }}</td>
+                    <td><a href="{{ dfmr.http.url }}">HTTP</a></td>
+                    <td>{{ dfmr.country.code }}</td>
+                    <td>{{ dfmr.http.ipv4 }}</td>
+                    <td>{{ dfmr.http.ipv6 }}</td>
+                    <td>{{ dfmr.http.status }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <h2>Rsync Mirrors</h2>
+        <h2>Portage Mirrors</h2>
         <table id="rsync" class="tablesorter">
             <thead>
                 <tr>
@@ -48,15 +48,15 @@
                 </tr>
             </thead>
             <tbody>
-                {% for rsyncmirror in rsyncmirrors %}
+                {% for pmr in portagemirror %}
                 <tr>
-                    <td>{{ rsyncmirror.country.continent }}</td>
-                    <td>{{ rsyncmirror.provider.name }}</td>
-                    <td><a href="{{ rsyncmirror.url.url }}">rsync</a></td>
-                    <td>{{ rsyncmirror.country.code }}</td>
-                    <td>{{ rsyncmirror.url.ipv4 }}</td>
-                    <td>{{ rsyncmirror.url.ipv6 }}</td>
-                    <td>{{ rsyncmirror.url.status }}</td>
+                    <td>{{ pmr.country.continent }}</td>
+                    <td>{{ pmr.provider.name }}</td>
+                    <td><a href="{{ pmr.url.url }}">rsync</a></td>
+                    <td>{{ pmr.country.code }}</td>
+                    <td>{{ pmr.url.ipv4 }}</td>
+                    <td>{{ pmr.url.ipv6 }}</td>
+                    <td>{{ pmr.url.status }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -74,4 +74,4 @@
         <br />
         <div align="center"> © Gentoo Foundation, Inc.</div>
     </div>
-{% endblock %}
+    {% endblock %}

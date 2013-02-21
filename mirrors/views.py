@@ -1,17 +1,17 @@
-from django.forms.models import modelformset_factory
+from django.forms.models import modelform_factory, modelformset_factory
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from mirrors.models import Providers, RsyncMirrors, DistfilesMirrors
+from mirrors.models import *
 from mirrors.forms import *
 
 def index(request):
-    rsyncmirrors = RsyncMirrors.objects.all()
-    distfilesmirrors = DistfilesMirrors.objects.all()
+    portagemirror = PortageMirror.objects.all()
+    distfilesmirror = DistfilesMirror.objects.all()
     return render_to_response('index.html', {
-        'rsyncmirrors': rsyncmirrors,
-        'distfilesmirrors': distfilesmirrors,
-    }, context_instance=RequestContext(request))
+        'portagemirror': portagemirror,
+        'distfilesmirror': distfilesmirror,
+    }, context_instance = RequestContext(request))
 
 def settings(request):
     return render_to_response('settings_general.html', {
@@ -66,4 +66,42 @@ def settings_add_contact(request):
     return render_to_response('settings_add_contact.html', {
         'form': form,
         'formset': formset,
+    }, context_instance = RequestContext(request))
+
+def settings_add_portagemirror(request):
+    UrlForm = modelform_factory(MirrorURL, form=MirrorURLForm)
+    AliasForm = modelform_factory(MirrorAlias, form=MirrorAliasForm)
+    BugsFormset = modelformset_factory(MirrorBugs, extra=3)
+    if request.method == 'POST':
+        portagemirror_form = PortageMirrorForm(request.POST)
+        url_form = UrlForm(request.POST)
+        alias_form = AliasForm(request.POST)
+        bugs_formset = BugsFormset(
+            request.POST,
+            queryset=MirrorBugs.objects.none()
+        )
+        if alias_form.is_valid()and url_form.is_valid():
+            alias = alias_form.save()
+            url = url_form.save(commit=False)
+            url.alias  = alias
+            url.save()
+            if portagemirror_form.is_valid() and bugs_formset.save():
+                try:
+                    portagemirror = portagemirror_form.save(commit=False)
+                    portagemirror.url = url
+                    portagemirror.save()
+                    bugs_formset.save()
+                    return HttpResponseRedirect('/settings/')
+                except:
+                    raise
+    else:
+        portagemirror_form = PortageMirrorForm()
+        url_form = UrlForm()
+        alias_form = AliasForm()
+        bugs_formset = BugsFormset(queryset=MirrorBugs.objects.none())
+    return render_to_response('settings_add_portagemirror.html', {
+        'portagemirror_form': portagemirror_form,
+        'url_form': url_form,
+        'alias_form': alias_form,
+        'bugs_formset': bugs_formset,
     }, context_instance = RequestContext(request))

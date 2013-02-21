@@ -1,0 +1,33 @@
+{% extends "settings.html" %}
+{% load staticfiles %}
+
+{% block settings_content %}
+        <div class="container">
+            <h2>Portage Mirror</h2>
+            <h3>Add a new Portage mirror:</h3>
+            <form action="." method="POST">{% csrf_token %}
+                {% for field in portagemirror_form %}
+                        {% if field.label != "Id" and field.label != "Bugs" %}
+                            {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
+                        {% endif %}
+                {% endfor %}
+                {% for field in url_form %}
+                    {% if field.label != "Id"%}
+                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
+                    {% endif %}
+                {% endfor %}
+                {% for field in alias_form %}
+                        {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
+                {% endfor %}
+                {{ bugs_formset.management_form }}
+                {% for form in bugs_formset %}
+                    {% for field in form %}
+                        {% if field.label != "Id" %}
+                            {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                <input class="button" type="submit" value="Save" name="save" />
+            </form>
+        </div>
+{% endblock %}
