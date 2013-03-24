@@ -1,5 +1,5 @@
-from django.forms import ModelForm
 from django import forms
+from django.forms import ModelForm
 from mirrors.models import MirrorAlias, MirrorBugs, MirrorURL, Providers, Contacts, ContactEmail, PortageMirror, DistfilesMirror
 
 
@@ -31,15 +31,10 @@ class MirrorBugsForm(ModelForm):
 class MirrorURLForm(ModelForm):
     class Meta:
         model = MirrorURL
-        exclude = ('alias',)
+        exclude = ('alias', 'status',)
 
 
 class PortageMirrorForm(ModelForm):
     class Meta:
         model = PortageMirror
-        exclude = ('bugs', 'url',)
-
-
-class DistfilesMirrorForm(ModelForm):
-    class Meta:
-        model = DistfilesMirror
+        exclude = ('bugs', 'url', )
