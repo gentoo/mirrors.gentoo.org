@@ -58,13 +58,10 @@ class Mirror(models.Model):
 
 
 class PortageMirror(Mirror):
-    url = models.ForeignKey(MirrorURL, unique=True)
+    url = models.OneToOneField(MirrorURL)
 
 
 class DistfilesMirror(Mirror):
-    http = models.ForeignKey(MirrorURL, null=True, unique=True,
-                             related_name='http', verbose_name='HTTP')
-    ftp = models.ForeignKey(MirrorURL, null=True, unique=True,
-                            related_name='ftp', verbose_name='FTP')
-    rsync = models.ForeignKey(
-        MirrorURL, null=True, unique=True, related_name='rsync')
+    http = models.OneToOneField(MirrorURL, null=True, related_name='http', verbose_name='HTTP')
+    ftp = models.ForeignKey(MirrorURL, null=True, related_name='ftp', verbose_name='FTP')
+    rsync = models.ForeignKey(MirrorURL, null=True, related_name='rsync')
