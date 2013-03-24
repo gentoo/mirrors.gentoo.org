@@ -62,7 +62,6 @@ class PortageMirror(Mirror):
 
 
 class DistfilesMirror(Mirror):
-    http = models.OneToOneField(
-        MirrorURL, null=True, related_name='http', verbose_name='HTTP')
+    http = models.OneToOneField(MirrorURL, null=True, related_name='http', verbose_name='HTTP')
     ftp = models.OneToOneField(MirrorURL, null=True, related_name='ftp', verbose_name='FTP')
     rsync = models.OneToOneField(MirrorURL, null=True, related_name='rsync')
