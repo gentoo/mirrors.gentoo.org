@@ -11,7 +11,7 @@ urlpatterns = patterns('',
                        (r'^settings/add/portagemirror/$',
                         'mirrors.views.settings_add_portagemirror'),
                        (r'^settings/add/distfilesmirror/$',
-                        'mirrors.views.settings_add_distfilesmirror')
+                        'mirrors.views.settings_add_distfilesmirror'),
                        )
 
 urlpatterns += staticfiles_urlpatterns()

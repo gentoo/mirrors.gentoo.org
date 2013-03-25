@@ -37,4 +37,10 @@ class MirrorURLForm(ModelForm):
 class PortageMirrorForm(ModelForm):
     class Meta:
         model = PortageMirror
-        exclude = ('bugs', 'url', )
+        exclude = ('bugs', 'url',)
+
+
+class DistfilesMirrorForm(ModelForm):
+    class Meta:
+        model = DistfilesMirror
+        exclude = ('bugs', 'ftp', 'http', 'rsync',)
