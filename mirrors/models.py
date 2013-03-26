@@ -30,7 +30,7 @@ class Providers(models.Model):
 
 
 class MirrorAlias(models.Model):
-    alias = models.CharField(max_length=255)
+    alias = models.CharField(max_length=255, blank=True, null=True)
 
 
 class MirrorBugs(models.Model):
@@ -38,8 +38,11 @@ class MirrorBugs(models.Model):
 
 
 class MirrorURL(models.Model):
-    url = models.CharField(max_length=255, verbose_name="URL")
+    url = models.CharField(max_length=255, blank=True, null=True, verbose_name="URL")
     alias = models.ForeignKey(MirrorAlias, null=True)
+    http = models.BooleanField(default=False, verbose_name="HTTP")
+    rsync = models.BooleanField(default=False, verbose_name="Rsync")
+    ftp = models.BooleanField(default=False, verbose_name="FTP")
     ipv4 = models.BooleanField(default=False, verbose_name="IPv4")
     ipv6 = models.BooleanField(default=False, verbose_name="IPv6")
     status = models.CharField(max_length=10,
@@ -62,6 +65,4 @@ class PortageMirror(Mirror):
 
 
 class DistfilesMirror(Mirror):
-    http = models.OneToOneField(MirrorURL, null=True, related_name="http")
-    ftp = models.OneToOneField(MirrorURL, null=True, related_name="ftp")
-    rsync = models.OneToOneField(MirrorURL, null=True, related_name="rsync")
+    url = models.OneToOneField(MirrorURL)

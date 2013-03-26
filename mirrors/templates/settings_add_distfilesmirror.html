@@ -20,40 +20,12 @@
 	    </div>
         <div style="width:350px;">
 		    <fieldset>
-    		    <legend style="color:blue;font-weight:bold;">HTTP</legend>
+    		    <legend style="color:blue;font-weight:bold;">Distfiles</legend>
     		    <table>
-    		    <tr>{% for field in http_form %}
+    		    <tr>{% for field in url_form %}
                     <tr><td> {{ field.label_tag }}:</td><td>{{ field }} {{ field.errors|striptags }}</td></tr>
                 {% endfor %}
-                {% for field in http_alias_form %}
-                    <tr><td>{{ field.label_tag }}:</td><td> {{ field }} {{ field.errors|striptags }}</td></tr>
-                {% endfor %}
-    		</tr>
-    		</table>
-   		</fieldset>
-    </div>
-    <div style="width:350px;">
-		    <fieldset>
-    		    <legend style="color:blue;font-weight:bold;">FTP</legend>
-    		    <table>
-    		    <tr>{% for field in ftp_form %}
-                    <tr><td> {{ field.label_tag }}:</td><td>{{ field }} {{ field.errors|striptags }}</td></tr>
-                {% endfor %}
-                {% for field in ftp_alias_form %}
-                    <tr><td> {{ field.label_tag }}:</td><td> {{ field }} {{ field.errors|striptags }}</td></tr>
-                {% endfor %}
-    		</tr>
-    		</table>
-   		</fieldset>
-    </div>
-   <div style="width:350px;">
-		    <fieldset>
-    		    <legend style="color:blue;font-weight:bold;">Rsync</legend>
-    		    <table>
-    		    <tr>{% for field in rsync_form %}
-                    <tr><td> {{ field.label_tag }}:</td><td>{{ field }} {{ field.errors|striptags }}</td></tr>
-                {% endfor %}
-                {% for field in rsync_alias_form %}
+                {% for field in alias_form %}
                     <tr><td>{{ field.label_tag }}:</td><td> {{ field }} {{ field.errors|striptags }}</td></tr>
                 {% endfor %}
     		</tr>

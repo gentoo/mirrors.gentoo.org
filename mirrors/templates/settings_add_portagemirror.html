@@ -12,7 +12,7 @@
                         {% endif %}
                 {% endfor %}
                 {% for field in url_form %}
-                    {% if field.label != "Id"%}
+                    {% if field.label != "Id" and field.label != "HTTP" and field.label != "Rsync" and field.label != "FTP" %}
                         {{ field.label_tag }}: {{ field }} {{ field.errors|striptags }}<br />
                     {% endif %}
                 {% endfor %}
